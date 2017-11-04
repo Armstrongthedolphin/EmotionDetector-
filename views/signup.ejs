@@ -1,0 +1,73 @@
+<!-- views/signup.ejs -->
+<!doctype html>
+<html>
+<head>
+	<title>VITA-Signup</title>
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
+	<style>
+		body 		{  background-color:rgba(202,235,242,1);padding-top:30px; }
+        html{ background-color:rgba(202,235,242,1);}
+        
+        .sign{color:rgba(202,235,242,1);font-size:70%;padding:0px;
+            letter-spacing: .2em;
+        text-shadow: -1px -1px 1px #1d95af, 
+      2px 2px 1px#f7fcfd;
+      }
+        
+        .jumbotron{ background-color:rgba(233,248,251,1); }
+        .jumbotron h1{padding:0px; }
+        label{color:#a9a9a9;}
+        .btn-custom{ background-color: rgba(255,56,63,1); !important;
+                     color:rgba(200,200,200,1);border-radius: 3px;}
+        p{color:#999999}
+        a{color:rgba(255,56,63,1);}
+	</style>
+</head>
+<body>
+<div class="container">
+
+<div class="jumbotron col-sm-6 col-sm-offset-3">
+
+    <h1> <span class="sign">Signup</span></h1>
+
+	<!-- show any messages that come back with authentication -->
+	<% if (message.length > 0) { %>
+		<div class="alert alert-danger"><%= message %></div>
+	<% } %>
+
+	<!-- LOGIN FORM -->
+	<form action="/signup" method="post">
+		<div class="form-group">
+			<label>Email</label><input type="text" class="form-control" name="email">
+		</div>
+		<div class="form-group">
+			<label>Password</label>
+			<input type="password" class="form-control" name="password">
+		</div>
+        <div class="form-group">
+			<label>First Name</label>
+			<input type="text" class="form-control" name="firstName">
+		</div>
+        <div class="form-group">
+			<label>Last Name</label>
+			<input type="text" class="form-control" name="lastName">
+		</div>
+        <div class="form-group">
+			<label>User Name</label>
+			<input type="text" class="form-control" name="userName">
+		</div>
+
+		<button type="submit" class="btn btn-custom btn-lg">Signup</button>
+	</form>
+
+	<hr>
+
+	<p>Already have an account? <a href="/login">Login</a></p>
+	<p>Or go <a href="/">home</a>.</p>
+
+</div>
+
+</div>
+</body>
+</html>

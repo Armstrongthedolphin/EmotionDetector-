@@ -1,0 +1,65 @@
+<!-- views/profile.ejs -->
+<!doctype html>
+<html>
+<head>
+<title>Profile</title>
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/css?family=Lato|Monoton" rel="stylesheet">
+<style>
+body { padding-top:80px; word-wrap:break-word;
+background-color:rgba(202,235,242,1);
+}
+
+html{ background-color:rgba(202,235,242,1);}
+#p{color:rgba(255,56,63,1);font-size: 200%;}
+#r{color:rgba(239,239,239,1);font-size: 200%;}
+#o{color:rgba(255,56,63,1);font-size: 200%;}
+#f{color:#A9A9A9;font-size: 200%;}
+#i{color:rgba(255,56,63,1);font-size: 200%;}
+#l{color:rgba(239,239,239,1);font-size: 200%;}
+#e{color:rgba(255,56,63,1);font-size: 200%;}
+.jumbotron{background-color:rgba(202,235,242,1);}
+h1{letter-spacing: 20px;
+text-shadow: 0px 4px 3px rgba(50,50,50,0.7),
+ 0px 8px 13px rgba(50,50,50,0.4),
+ 0px 18px 23px rgba(50,50,50,0.4);
+font-family: 'Monoton', cursive;}
+
+.btn-custom{ background-color: rgba(255,56,63,1); !important;
+                     color:rgba(200,200,200,1);border-radius: 3px;}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="page-header text-center">
+  <h1 ><span id="p">P</span><span id="r">R</span><span id="o">O</span><span id="f">F</span><span id="i">I</span>
+<span id="l">L</span><span id="e">E</span></h1>
+<a href="/logout" class="btn btn-custom btn-sm">Logout</a>
+</div>
+
+<div class="row">
+
+<!-- LOCAL INFORMATION -->
+<div class="col-sm-6">
+    <h2>Hello, <%= user.local.userName %> !</h2>
+
+<p>
+<strong>id</strong>: <%= user._id %><br>
+<strong>email</strong>: <%= user.local.email %><br>
+<strong>FirstName</strong>: <%= user.local.firstName %><br>
+<strong>LastName</strong>: <%= user.local.lastName %><br>
+<strong>userName</strong>: <%= user.local.userName %><br>
+
+</p>
+
+</div>
+</div>
+
+</div>
+
+</div>
+</body>
+</html>
+

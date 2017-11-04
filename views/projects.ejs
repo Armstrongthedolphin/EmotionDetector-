@@ -1,0 +1,100 @@
+
+<!-- ASSIGN OUR ANGULAR MODULE -->
+<html ng-app="bogoProject">
+<head>
+    <!-- META -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
+    <title>Projects</title>
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+        <link href="https://fonts.googleapis.com/css?family=Lato|Monoton" rel="stylesheet">
+    <style>
+        html { overflow-y:scroll; }
+        #project-list              { background-color:rgba(202,235,242,1);margin-bottom:30px; }
+        .jumbotron{background-color:rgba(202,235,242,1);}
+        #p{color:rgba(255,56,63,1);font-size: 150%;}
+        #r{color:rgba(239,239,239,1);font-size: 150%;}
+        #o{color:rgba(255,56,63,1);font-size: 150%;}
+        #j{color:#A9A9A9;font-size: 150%;}
+        #e{color:rgba(255,56,63,1);font-size: 150%;}
+        #c{color:rgba(239,239,239,1);font-size: 150%;}
+        #t{color:rgba(255,56,63,1);font-size: 150%;}
+        #s{color:#A9A9A9;font-size: 150%;}
+        h1{letter-spacing: 20px;
+      text-shadow: 0px 4px 3px rgba(50,50,50,0.7),
+             0px 8px 13px rgba(50,50,50,0.4),
+             0px 18px 23px rgba(50,50,50,0.4);
+        font-family: 'Monoton', cursive;}
+        .btn-custom{ background-color: rgba(255,56,63,1); !important;
+                     color:rgba(200,200,200,1);border-radius: 3px;padding:10px;}
+        .label{background-color: rgba(255,56,63,1);}
+        
+    </style>
+    <!-- SPELLS -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><!-- load jquery -->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script><!-- load angular -->
+    <script src="js/core.js"></script>
+    <script src="js/controllers/main.js"></script> <!-- load up our controller -->
+    <script src="js/services/projects.js"></script> <!-- load our todo service -->
+    <script src="js/core.js"></script> <!-- load our main application -->
+</head>
+<!-- SET THE CONTROLLER AND GET ALL TODOS -->
+<body ng-controller="mainController">
+        <div class="jumbotron text-center">
+  <h1 ><span id="p">P</span>   <span id="r">R</span>   <span id="o">O</span>    <span id="j">J</span>
+  <span id="e">E</span><span id="c">C</span><span id="t">T</span> <span id="s">S</span></h1>
+  <p><a class="btn btn-custom btn-lg" href="/profile" role="button">My profile</a></p>
+  
+</div>
+<div class="container">
+  <div class="row">
+        <!-- FORM TO CREATE TODOS -->
+        <div id="project-form">
+          <div class="col-sm-4">
+            <!-- <div class="col-sm-8 col-sm-offset-2 text-center"> -->
+                <form>
+                    <div class="form-group">
+                        <!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
+                        <input type="text" class="form-control input-lg text-center" placeholder="Project Name" ng-model="formData.projectName">
+                          <input type="text" class="form-control input-lg text-center" placeholder="Project Description" ng-model="formData.projectDescription">
+                            <input type="text" class="form-control input-lg text-center" placeholder="Email" ng-model="formData.email">
+                              <input type="text" class="form-control input-lg text-center" placeholder="Skills Needed" ng-model="formData.skills">
+                    </div>
+                    <!-- createToDo() WILL CREATE NEW TODOS -->
+                    <button type="submit" class="btn btn-custom btn-lg" ng-click="createProject()">Create</button>
+                </form>
+            </div>
+        </div>
+  <div class="col-sm-8">
+     <h2 class="center">Projects <span class="label label-info">{{ projects.length }}</span></h2>
+      <div class="input-group">
+         <input type="text" class="form-control" ng-model="search" >
+          <div class = "input-group-btn">
+          <select ng-model="orderlist" onchange="pxtrack.emit('counter', '2')">
+              <option value="-'_id'">Newest</option>
+              <option value="'_id'">Oldest</option>
+              <option value="'projectName'">By name</option>
+              <option value="'userName'">By creator</option> 
+          </select>
+              
+              
+              
+             
+            <!--<button class="btn btn-default" type="button">Go!</button>-->
+          </div>
+      </div>
+         <table class="table" class="checkbox" data-ng-repeat="project in projects | filter: search | orderBy:orderlist">
+          <tr><th>Project Name: {{project.projectName}}</th></tr>
+          <tr><th>Project Description: {{project.projectDescription}}</th></tr>
+          <tr><th>Contact Email: {{project.email}}</th></tr>
+          <tr><th>Skills Needed: {{project.skills}}</th></tr>
+          <tr><th>Creator: {{project.userName}}</th></tr>
+          <tr><th><button type="button" ng-click="deleteProject(project._id)">Remove Project</button><th>
+        
+             </tr>
+        </table>
+    </div>
+  </div>
+</div>
+</body>
+</html>
