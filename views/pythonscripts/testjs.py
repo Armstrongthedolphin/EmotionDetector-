@@ -10,7 +10,7 @@ def main():
     tb = TextBlob(message);
     num = tb.sentiment.polarity;
     
-    if(num < -0.1 and num > -1):
+    if(num < -0.05 and num > -1):
         pos = hex(int(round(153-num * -152)))
         pos = str (pos)
         if(len(pos)==3):
@@ -19,7 +19,7 @@ def main():
             print('#'+ pos[2]+pos[3]+ pos[2]+pos[3]+'ff')
         
         sys.stdout.flush()
-    if(num > 0.1 and num < 1):
+    if(num > 0.05 and num < 1):
         pos = hex(int(round(150-num * 150)))
         pos = str (pos)
         if(len(pos)==3):
