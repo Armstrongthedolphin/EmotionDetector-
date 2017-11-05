@@ -153,7 +153,7 @@
 	var message = msginput.value;
 	if (message != "") {
         var div= document.createElement("div");
-        div.innerHTML = message;
+        //div.innerHTML = message;
         $.ajax({
             type: 'POST',
             url: "/colorpy",
@@ -161,7 +161,9 @@
             dataType: "text",
             success: function(response){
               output = response;
+              div.innerHTML = output;
               div.style.background = output;
+                
             }
         });
         div.style.margin = '30px';
