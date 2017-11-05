@@ -98,6 +98,7 @@
 	.msgfrom {
 		background-color: #0084ff;
 		color: #FFF;
+        
 		margin: 10px 10px 10px 55%;
 	}
 	.msgarr {
@@ -124,6 +125,10 @@
 		margin-right: 12px;
 	}
 	</style>
+    <script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
 </head>
     
 <body onload="checkcookie(); update();">
@@ -139,6 +144,7 @@
 	<div class="bottom"><input type="text" name="msginput" class="msginput" id="msginput" onkeydown="if (event.keyCode == 13) sendmsg()" value="" placeholder="Enter your message here ... (Press enter to send message)"></div>
 </div>
     
+
 <script type="text/javascript">
     var msginput = document.getElementById("msginput");
     var msgarea = document.getElementById("msg-area");
@@ -146,12 +152,87 @@
     function sendmsg() {
 	var message = msginput.value;
 	if (message != "") {
-        msgarea.innerHTML += 
-            "<div class=\"msgc\" style=\"margin-bottom: 30px;\"> <div class=\"msg msgfrom\">" + message + "</div> ";
-
+        var div= document.createElement("div");
+        div.innerHTML = message;
+        $.ajax({
+            type: 'POST',
+            url: "/colorpy",
+            data: {param: message}, 
+            dataType: "text",
+            success: function(response){
+              output = response;
+              div.style.background = output;
+            }
+        });
+        div.style.margin = '30px';
+        
+        div.classList.add('msg','msgfrom');
+        msgarea.appendChild(div);
+//        msgarea.innerHTML += 
+//            "<div class=\"msgc\" style=\"margin-bottom: 30px;\"> <div class=\"msg msgfrom\" style=\"margin-bottom: 30px; \">" + message + "</div> ";
+        
     }
     }
-
-    </script>
+    
+//    function bgcol(){
+//        var message = msginput.value;
+//        $.ajax({
+//        type: 'POST',
+//        url: "pythonscripts/testjs.py",
+//        data: {param: message}, 
+//        dataType: "text",
+//        success: function(response){
+//           output = response;
+//           alert(output);
+//        }
+//        }).done(function(data){
+//            console.log(data);
+//            alert(data);
+//        });
+//    }
+</script> 
+<!--
+<script type="text/javascript">
+     var msginput = document.getElementById("msginput");
+     function bgcol(){
+        var message = msginput.value;
+        $.ajax({
+        type: 'POST',
+        url: "pythonscripts/testjs.py",
+        data: {param: message}, 
+        dataType: "text",
+        success: function(response){
+           output = response;
+           alert(output);
+        }
+        }).done(function(data){
+            console.log(data);
+            alert(data);
+        });
+    }
+</script>    
+-->
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

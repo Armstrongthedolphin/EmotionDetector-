@@ -68,6 +68,25 @@ module.exports = function(app,passport) {
 		req.logout();
 		res.redirect('/');
 	});
+	// =====================================
+	// PYTHON ==============================
+	// =====================================    
+	app.post('/colorpy', function(req, res) {
+        var PythonShell = require('python-shell');
+        
+        var options = {
+            args:[req.body.param]
+        };
+ 
+        PythonShell.run('views/pythonscripts/testjs.py',options, function (err,results) {
+        if (err) throw err;
+        console.log(results);
+        res.send(results[0]);
+        });
+        
+        
+       
+	});    
 
 
     // api ---------------------------------------------------------------------

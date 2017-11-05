@@ -1,5 +1,7 @@
 import sys
 
-output = sys.argv[1]
+def main():
+    print('#0100FF')
+    sys.stdout.flush()
 
-print output
+main()
